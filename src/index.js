@@ -18,16 +18,15 @@ const onClickAdd = () => {
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
     //完了処理
-    //押された完了ボタンの親タグ(li)を未完了リストから削除 **かぶってます**
     const completeTarget = completeButton.parentNode.parentNode;
-    //未完了リストから削除
-    document.getElementById("incomplete-list").removeChild(completeTarget);
+    //押された削除ボタンの親タグ（li）を未完了リストから削除
+    deleteFromIncompleteList(completeTarget);
+
     //完了リストに追加
     document.getElementById("complete-list").appendChild(completeTarget);
     //console.log(completeTarget);
     completeTarget.childNodes[0].removeChild(completeButton);
     completeTarget.childNodes[0].removeChild(deleteButton);
-
     //戻るボタン生成
     const backButton = document.createElement("button");
     backButton.innerText = "戻す";
@@ -49,9 +48,7 @@ const onClickAdd = () => {
   deleteButton.addEventListener("click", () => {
     //削除処理
     //押された削除ボタンの親タグ（li）を未完了リストから削除
-    const deleteTarget = deleteButton.parentNode.parentNode;
-    //未完了リストから削除
-    document.getElementById("incomplete-list").removeChild(deleteTarget);
+    deleteFromIncompleteList(deleteButton.parentNode.parentNode);
   });
 
   //divにボタンをつける
@@ -68,7 +65,7 @@ const onClickAdd = () => {
 // 未完了リストから指定の要素を削除
 const deleteFromIncompleteList = (target) => {
   //未完了リストから削除
-  document.getElementById("incomplete-list").removeChild(deleteTarget);
+  document.getElementById("incomplete-list").removeChild(target);
 };
 
 document
